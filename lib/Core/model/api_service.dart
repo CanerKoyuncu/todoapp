@@ -10,7 +10,7 @@ class ApiService {
   String _baseUrl = "";
 
 
-  static ApiService _instance = ApiService._privateConstructor();
+  static final ApiService _instance = ApiService._privateConstructor();
   ApiService._privateConstructor(){
     _baseUrl = "https://todo-app-768e1-default-rtdb.europe-west1.firebasedatabase.app/";
 
@@ -25,7 +25,7 @@ class ApiService {
   }
 
   Future<List<Product>> getProducts() async{
-     final http.Response response = await http.get(Uri.parse("${_baseUrl}/users.json/"));
+     final http.Response response = await http.get(Uri.parse("${_baseUrl}/product.json/"));
      final jsonResponce  = json.decode(response.body);
 
      switch (response.statusCode){
@@ -41,12 +41,12 @@ class ApiService {
 
   }
 
-  Future<void> addProduct(Product product) async{
+  Future addProduct(Product product) async{
     final jsonBody = json.encode(product.toJson());
 
-    final response = await http.post(Uri.parse("${_baseUrl}/product.json/"),body: jsonBody);
+    final response = await http.post(Uri.parse("$_baseUrl/product.json/"),body: jsonBody);
 
-    final jsonResponse = json.decode("body=" + response.body);
+    final jsonResponse = json.decode(response.body);
     logger.i(response.body);
 
     switch (response.statusCode) {

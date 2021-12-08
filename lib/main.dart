@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todoapp/ui/view/home_view.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
       title: "Todo App",
       initialRoute: "/",
       routes: {
-        "/":(context) => HomeView() 
+        "/":(context) => const HomeView() 
       },
     );
   }

@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_collection_literals
+
 class Product {
   String productName ="";
   int money = 0;
@@ -11,16 +13,16 @@ class Product {
   );
 
   Product.fromJson(Map<String, dynamic> json) {
-    productName = json['product'];
+    productName = json['productName'];
     money = json['money'];
     imageUrl = json['imageUrl'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['productName'] = this.productName;
-    data['money'] = this.money;
-    data['imageUrl'] = this.imageUrl;
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['productName'] = productName;
+    data['money'] = money;
+    data['imageUrl'] = imageUrl;
     return data;
   }
 }

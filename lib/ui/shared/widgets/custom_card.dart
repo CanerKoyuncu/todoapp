@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todoapp/ui/view/details_page.dart';
 
 class CustomCard extends StatelessWidget {
 
@@ -14,17 +15,27 @@ class CustomCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: ListTile(
-        title: Text(title),
-        subtitle: Text(subtitle),
-        trailing: imagePlace,
+    return GestureDetector(
+      onTap: ()=>{
+
+        Navigator.pop(context),
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => DetailsPageView()) )
+
+      },
+      child: Card(
+        child: ListTile(
+          title: Text(title),
+          subtitle: Text(subtitle),
+          trailing: imagePlace,
+        ),
       ),
     );
   }
 
 
   Widget get imagePlace{
-    return imageUrl.isEmpty ? Container(width: 100 ,child:Placeholder()) : Image.network(imageUrl);
+    return imageUrl.isEmpty ? const SizedBox(width: 100 ,child:Placeholder()) : Image.network(imageUrl);
   }
 }

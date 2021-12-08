@@ -1,5 +1,3 @@
-import 'package:path/path.dart';
-
 import 'package:flutter/material.dart';
 import 'package:todoapp/Core/model/api_service.dart';
 import 'package:todoapp/Core/model/product.dart';
@@ -22,7 +20,7 @@ ApiService service = ApiService.getInstance();
     return Scaffold(
 
         appBar: AppBar(
-          title:Text("Todo App"),
+          title:const Text("Todo App"),
           ),
         floatingActionButton: _fabButton
         ,
@@ -35,11 +33,11 @@ ApiService service = ApiService.getInstance();
               productList = snapshot.data!;
               return _listView;
               }
-              return Center(
+              return const Center(
                 child: Text("Error"),
             );
             default:
-              return Center(
+              return const Center(
                 child: CircularProgressIndicator(),
               );
           }
@@ -50,12 +48,12 @@ ApiService service = ApiService.getInstance();
 
 Widget get _fabButton => FloatingActionButton(
           onPressed: fabPressed,
-          child: Icon(Icons.add),
+          child: const Icon(Icons.add),
 );
 
 Widget get _listView => ListView.separated(
       itemCount: productList.length,
-      separatorBuilder: (context, index) => Divider(),
+      separatorBuilder: (context, index) => const Divider(),
       itemBuilder: (context, index) => (
           CustomCard(
             title: productList[index].productName,
@@ -65,19 +63,20 @@ Widget get _listView => ListView.separated(
 
 void fabPressed(){
   showModalBottomSheet(
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.vertical(top: Radius.circular(25),),),
-    context: this.context,
+    isScrollControlled: false,
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.vertical(top: Radius.circular(25),
+      ),
+      ),
+    context: context,
   builder: (context)=> bottomSheet,
   );
 }
 
-Widget get bottomSheet => Container(
-  
-  height: MediaQuery.of(this.context).size.height/3,
-  
+Widget get bottomSheet => SizedBox(
+  height: MediaQuery.of(context).size.height/3+15,
   child: Column(
-    children: <Widget>[
+    children: const <Widget>[
       AddProductView()
     ],
 
